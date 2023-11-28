@@ -2,6 +2,7 @@ import dotenv from 'dotenv';
 import express from 'express';
 import cors from 'cors';
 import connetDB from './config/dbConnect.js';
+import userRouter from './routes/user.route.js';
 
 dotenv.config();
 
@@ -16,7 +17,10 @@ app.use(cors());
 connetDB(DATABASE_URL);
 
 // JSON
-app.use(express.json())
+app.use(express.json());
+
+// Load Routes
+app.use("/api/user", userRouter);
 
 
 app.listen(port,()=>{
